@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -46,9 +47,9 @@ namespace StudentDirectory
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: ConfigurationManager.AppSettings["MicrosoftClientId"],
+                clientSecret: ConfigurationManager.AppSettings["MicrosoftClientSecret"]);
 
             //app.UseTwitterAuthentication(
             //   consumerKey: "",
@@ -60,8 +61,8 @@ namespace StudentDirectory
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1000454231491-fcfosagq5rtk9l6jtvknlam0vpeblt4j.apps.googleusercontent.com",
-                ClientSecret = "8i2AC8o42Yv6R_DjkAAsdGj-"
+                ClientId = ConfigurationManager.AppSettings["GoogleClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"]
             });
         }
     }
