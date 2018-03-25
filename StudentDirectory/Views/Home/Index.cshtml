@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>STUDENT DIRECTORY</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Courses</h2>
+        <p>
+            Select Courses to view course list and all enrolled students for each course.
+        </p>
+        @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "btn btn-primary btn-large" })
+    </div>
+    <div class="col-md-4">
+        <h2>Students</h2>
+        <p>
+            Select Students to view all students and their timetables.
+        </p>
+        @Html.ActionLink("Students", "Index", "Students", null, new { @class = "btn btn-primary btn-large" })
+        
+    </div>
+    <div class="col-md-4">
+        <h2>Login</h2>
+        <p>
+            Login or register to edit course and student information.
+        </p>
+        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-primary btn-large" })
+    </div>
+</div>
