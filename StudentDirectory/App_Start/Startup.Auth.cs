@@ -58,11 +58,11 @@ namespace StudentDirectory
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1000454231491-fcfosagq5rtk9l6jtvknlam0vpeblt4j.apps.googleusercontent.com",
+                ClientSecret = "8i2AC8o42Yv6R_DjkAAsdGj-"
+            });
         }
     }
 }
