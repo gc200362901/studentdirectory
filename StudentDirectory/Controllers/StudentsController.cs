@@ -10,17 +10,20 @@ using StudentDirectory.Models;
 
 namespace StudentDirectory.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private StudentDirectoryModel db = new StudentDirectoryModel();
 
         // GET: Students
+        [OverrideAuthorization]
         public ActionResult Index()
         {
             return View(db.Students.OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList());
         }
 
         // GET: Students/Details/5
+        [OverrideAuthorization]
         public ActionResult Details(int? id)
         {
             if (id == null)

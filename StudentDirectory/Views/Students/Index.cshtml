@@ -7,9 +7,12 @@
 
 <h2>Students</h2>
 
+@if (Request.IsAuthenticated)
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -66,9 +69,12 @@
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+            }
+            @Html.ActionLink("Details", "Details", new { id = item.StudentId })
         </td>
     </tr>
 }
