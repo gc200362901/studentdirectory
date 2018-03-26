@@ -55,8 +55,10 @@ namespace StudentDirectory
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions
             {
-                ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
-                ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
+                //ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
+                // ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
+                ConsumerKey = "p1BHccsAemTwOVNP0kk6hkerI",
+                ConsumerSecret = "TmeET0oFLuPkLg17Wz00PR2c4aS2SuyNrKKmmb99H2JBieR7sQ",
                 BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
             {
             "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
