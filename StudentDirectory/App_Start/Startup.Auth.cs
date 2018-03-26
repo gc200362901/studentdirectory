@@ -53,13 +53,9 @@ namespace StudentDirectory
                 clientId: ConfigurationManager.AppSettings["MicrosoftClientId"],
                 clientSecret: ConfigurationManager.AppSettings["MicrosoftClientSecret"]);
 
-            app.UseTwitterAuthentication(          
-                consumerKey: ConfigurationManager.AppSettings["TwitterConsumerKey"],
-                consumerSecret: ConfigurationManager.AppSettings["TwitterConsumerSecret"]);
-
             //app.UseTwitterAuthentication(
-               //consumerKey: "",
-               //consumerSecret: "");
+            //consumerKey: "",
+            //consumerSecret: "");
 
             //app.UseFacebookAuthentication(
             //   appId: "",
