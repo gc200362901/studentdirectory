@@ -8,6 +8,9 @@ namespace StudentDirectory
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            //force all https
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }

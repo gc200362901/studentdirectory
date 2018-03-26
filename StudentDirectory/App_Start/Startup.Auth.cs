@@ -3,10 +3,8 @@ using System.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Microsoft.Owin.Security.Twitter;
 using Owin;
 using StudentDirectory.Models;
 
@@ -53,9 +51,9 @@ namespace StudentDirectory
                 clientId: ConfigurationManager.AppSettings["MicrosoftClientId"],
                 clientSecret: ConfigurationManager.AppSettings["MicrosoftClientSecret"]);
 
-            //app.UseTwitterAuthentication(
-            //consumerKey: "",
-            //consumerSecret: "");
+            app.UseTwitterAuthentication(
+            consumerKey: "p1BHccsAemTwOVNP0kk6hkerI",
+            consumerSecret: "TmeET0oFLuPkLg17Wz00PR2c4aS2SuyNrKKmmb99H2JBieR7sQ");
 
             //app.UseFacebookAuthentication(
             //   appId: "",
