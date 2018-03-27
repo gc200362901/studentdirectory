@@ -10,7 +10,7 @@ namespace StudentDirectory
             filters.Add(new HandleErrorAttribute());
 
             //force all https
-            //filters.Add(new RequireHttpsAttribute());
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }

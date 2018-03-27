@@ -13,8 +13,10 @@ namespace StudentDirectory.Models
 
         [Required]
         [StringLength(10)]
+        [Display(Name = "Course Code")]
         public string CourseCode { get; set; }
 
+        [Display(Name = "Student ID")]
         public int StudentId { get; set; }
 
         public virtual Course Course { get; set; }
