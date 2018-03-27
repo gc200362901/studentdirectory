@@ -38,6 +38,22 @@ namespace StudentDirectory.Controllers
             return View(student);
         }
 
+        // GET: Students/Courses
+        [OverrideAuthorization]
+        public ActionResult Courses(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            IEnumerable<Enrollment> courseEnrollment = db.Enrollments.Where(e => e.StudentId == id);          
+            if (courseEnrollment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(courseEnrollment);
+        }
+
         // GET: Students/Create
         public ActionResult Create()
         {
