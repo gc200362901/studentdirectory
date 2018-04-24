@@ -13,7 +13,18 @@ namespace StudentDirectory.Controllers
     [Authorize]
     public class StudentsController : Controller
     {
-        private StudentDirectoryModel db = new StudentDirectoryModel();
+        //private StudentDirectoryModel db = new StudentDirectoryModel();
+        private IMockStudentsRepository db;
+
+        public StudentsController()
+        {
+            this.db = new EnityFrameworkStudentRepository();
+        }
+
+        public StudentsController(IMockStudentsRepository mockStudentsRepo)
+        {
+            this.db = mockStudentsRepo;
+        }
 
         // GET: Students
         [OverrideAuthorization]
@@ -28,36 +39,36 @@ namespace StudentDirectory.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
-            Student student = db.Students.Find(id);
+            Student student = db.Students.SingleOrDefault(s => s.StudentId == id);
             if (student == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(student);
         }
 
-        // GET: Students/Courses
-        [OverrideAuthorization]
-        public ActionResult Courses(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            IEnumerable<Enrollment> courseEnrollment = db.Enrollments.Where(e => e.StudentId == id);          
-            if (courseEnrollment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(courseEnrollment);
-        }
+       // GET: Students/Courses
+       //[OverrideAuthorization]
+       // public ActionResult Courses(int? id)
+       // {
+       //     if (id == null)
+       //     {
+       //         return View("Error");
+       //     }
+       //     IEnumerable<Enrollment> courseEnrollment = db.Enrollments.Where(e => e.StudentId == id);
+       //     if (courseEnrollment == null)
+       //     {
+       //         return View("Error");
+       //     }
+       //     return View(courseEnrollment);
+       // }
 
         // GET: Students/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Students/Create
@@ -69,12 +80,11 @@ namespace StudentDirectory.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
-                db.SaveChanges();
+                db.Save(student);
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            return View("Create", student);
         }
 
         // GET: Students/Edit/5
@@ -82,12 +92,12 @@ namespace StudentDirectory.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
-            Student student = db.Students.Find(id);
+            Student student = db.Students.SingleOrDefault(s => s.StudentId == id);
             if (student == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(student);
         }
@@ -101,11 +111,10 @@ namespace StudentDirectory.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Save(student);
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View("Edit", student);
         }
 
         // GET: Students/Delete/5
@@ -113,12 +122,12 @@ namespace StudentDirectory.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
-            Student student = db.Students.Find(id);
+            Student student = db.Students.SingleOrDefault(s => s.StudentId == id);
             if (student == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(student);
         }
@@ -128,19 +137,18 @@ namespace StudentDirectory.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
-            db.SaveChanges();
+            Student student = db.Students.SingleOrDefault(s => s.StudentId == id);
+            db.Delete(student);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
