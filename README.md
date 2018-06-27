@@ -1,6 +1,7 @@
 # studentdirectory
 
 <h2>StudentDirectory Management System</h2>
+<p>passwords removed</p>
 
 <ul>
   <li>Database with 3 tables containing 1-many relationships</li>
@@ -16,5 +17,5 @@
   <li>Create Azure web app and snyc with GitHub repo</li>
 </ul>
 
-<p>The demo site can be found at <a href="https://comp2007studentdirectory.azurewebsites.net/">https://comp2007studentdirectory.azurewebsites.net/</a></p>
+
 <p>Bootstrap SpaceLab Theme can be found free at <a href="https://bootswatch.com/3/">bootswatch.com/3</a></p>
